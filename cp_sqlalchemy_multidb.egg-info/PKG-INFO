@@ -1,0 +1,50 @@
+Metadata-Version: 1.1
+Name: cp-sqlalchemy-multidb
+Version: 0.1.0
+Summary: SQLAlchemy with multiple database support plugin for cherrypy
+Home-page: https://github.com/meyt/cp_sqlalchemy_multidb
+Author: Mahdi Ghane.g
+Author-email: eric@ionrock.org
+License: GPLv3
+Description: =====================
+        cp_sqlalchemy_multidb
+        =====================
+        
+        SQLAlchemy with multiple database support plugin for cherrypy.
+        
+        
+        Instructions
+        ============
+        
+        Download
+        ::
+        
+          git clone https://github.com/meyt/cp_sqlalchmey_multidb.git
+          cd ./cp_sqlalchemy_multidb
+          sudo python ./setup.py install
+        
+        
+        
+        or install from pypi
+        ::
+        
+          pip install cp_sqlalchmey_multidb
+        
+        
+        
+        Usage
+        =====
+        
+        look `test.py`.
+        
+Keywords: cp_sqlalchemy_multidb sqlalchemy cherrypy multiple_database
+Platform: UNKNOWN
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Natural Language :: English
+Classifier: Framework :: CherryPy
+Classifier: Topic :: Database
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Classifier: Programming Language :: Python :: 3.4
