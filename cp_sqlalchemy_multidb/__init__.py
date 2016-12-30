@@ -24,7 +24,7 @@ class Plugin(plugins.SimplePlugin):
             if isinstance(connection, str):
                 connection = {'cs': connection, 'echo': False}
             self.bus.log('Starting up DB[%s] access' % idx)
-            self.sa_engines[idx] = create_engine(connection['cs'], connection['echo'])
+            self.sa_engines[idx] = create_engine(connection['cs'], echo=connection['echo'])
         self.bus.subscribe("bind-session", self.bind)
         self.bus.subscribe("commit-session", self.commit)
 
