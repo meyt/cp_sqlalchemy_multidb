@@ -4,7 +4,7 @@ from cherrypy.process import wspbus, plugins
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-__all__ = ['Plugin','Tool']
+__all__ = ['Plugin', 'Tool']
 
 
 class Plugin(plugins.SimplePlugin):
@@ -65,16 +65,17 @@ class Tool(cherrypy.Tool):
                                       self.commit_transaction,
                                       priority=80)
 
-    def bind_session(self):
+    @staticmethod
+    def bind_session():
         cherrypy.request.db = {}
         sessions = cherrypy.engine.publish('bind-session').pop()
         print(sessions, type(sessions), dir(sessions))
         for idx, session in sessions.items():
-            cherrypy.request.db[idx]= session
+            cherrypy.request.db[idx] = session
 
-    def commit_transaction(self):
+    @staticmethod
+    def commit_transaction():
         if not hasattr(cherrypy.request, 'db'):
             return
         cherrypy.request.db = {}
         cherrypy.engine.publish('commit-session')
-
