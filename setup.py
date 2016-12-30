@@ -9,7 +9,7 @@ requirements = [
 
 setup(
     name='cp_sqlalchemy_multidb',
-    version='0.2.0',
+    version='0.2.1',
     description='SQLAlchemy with multiple database support plugin for cherrypy',
     long_description=readme,
     author='Mahdi Ghane.g',
