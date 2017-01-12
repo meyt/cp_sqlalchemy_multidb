@@ -10,19 +10,17 @@ __all__ = ['Plugin', 'Tool']
 class Plugin(plugins.SimplePlugin):
     def __init__(self, bus, connection_strings=None):
         plugins.SimplePlugin.__init__(self, bus)
-        self.connections_conf = {}
+        self.connections_conf = connection_strings
         self.sessions = {}
         self.sa_engines = {}
         for idx, connection_string in connection_strings.items():
             self.sa_engines[idx] = None
-            self.connections_conf[idx] = connection_string
-            self.sessions[idx] = scoped_session(sessionmaker(autoflush=True,
-                                                             autocommit=False))
+            self.sessions[idx] = scoped_session(sessionmaker(autoflush=connection_string['autoflush'],
+                                                             autocommit=connection_string['autocommit'],
+                                                             expire_on_commit=connection_string['expire_on_commit']))
 
     def start(self):
         for idx, connection in self.connections_conf.items():
-            if isinstance(connection, str):
-                connection = {'cs': connection, 'echo': False}
             self.bus.log('Starting up DB[%s] access' % idx)
             self.sa_engines[idx] = create_engine(connection['cs'], echo=connection['echo'])
         self.bus.subscribe("bind-session", self.bind)
