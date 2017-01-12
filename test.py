@@ -40,13 +40,21 @@ if __name__ == '__main__':
     import cp_sqlalchemy_multidb
     
     # Register plugin
-    cp_sqlalchemy_multidb.Plugin(cherrypy.engine, { 'db1': 'sqlite:///db1.db',
-                                                    'db2': 'sqlite:///db2.db'}).subscribe()
+    cp_sqlalchemy_multidb.Plugin(cherrypy.engine, {'db1': {'cs': 'sqlite:///db1.db',
+                                                           'echo': True,
+                                                           'autoflush': True,
+                                                           'autocommit': True,
+                                                           'expire_on_commit': True},
+                                                   'db2': {'cs': 'sqlite:///db2.db',
+                                                           'echo': True,
+                                                           'autoflush': True,
+                                                           'autocommit': True,
+                                                           'expire_on_commit': True
+                                                           }}).subscribe()
 
     # Register tool
     cherrypy.tools.db = cp_sqlalchemy_multidb.Tool()
-   
-   
+
     cherrypy.server.socket_port = 9091
 
     conf = {
