@@ -67,7 +67,6 @@ class Tool(cherrypy.Tool):
     def bind_session():
         cherrypy.request.db = {}
         sessions = cherrypy.engine.publish('bind-session').pop()
-        print(sessions, type(sessions), dir(sessions))
         for idx, session in sessions.items():
             cherrypy.request.db[idx] = session
 
